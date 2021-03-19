@@ -1,0 +1,450 @@
+//-------base------
+
+//// Средние девайсы («таблетки», >= 768px)
+//@media (min-width: 768px) { ... }
+//
+//// Большие девайсы (десктопы, >= 992px)
+//@media (min-width: 992px) { ... }
+//
+//// Экстрабольшие девайсы (большие десктопы, >= 1200px)
+//@media (min-width: 1200px) { ... }*/
+
+
+$primary_font_size: 16px
+
+$tablets-screen: "min-width: 767px"
+
+$notebooks-screen: "min-width: 992px"
+
+$desktops-screen: "min-width: 1200px"
+
+@function rem-translate($px)
+  $rem: $px / $primary_font_size
+  @return #{$rem}rem
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  font-size: $primary_font_size
+  font-family: 'Open Sans', sans-serif
+  font-weight: 300
+
+body
+  min-width: 320px
+  //height: 100%
+
+img
+  max-width: 100%
+
+// header burger menu
+
+body.lock
+  overflow: hidden
+// overflow: hidden Для того, чтобы не скролился текст под бургером
+
+.header
+  position: fixed
+  width: 100%
+  top: 0
+  left: 0
+  z-index: 50
+
+.header:before
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: #0072bc
+  z-index: 2
+
+.container
+  max-width: 1200px
+  margin: 0 auto
+  padding: 0 10px
+
+.header__body
+  position: relative
+  display: flex
+  justify-content: space-between
+  height: 50px
+  align-items: center
+
+.header__logo
+  flex: 0 0 40px
+  border-radius: 50%
+  overflow: hidden
+  position: relative
+  z-index: 3
+
+.header__logo img
+  max-width: 100%
+  display: block
+
+.header__link
+  color: #fff
+  font-weight: 700
+  text-transform: uppercase
+  font-size: 18px
+  text-decoration: none
+
+.header__burger
+  display: block
+  position: relative
+  width: 30px
+  height: 20px
+  z-index: 3
+
+.header__burger span
+  position: absolute
+  background-color: #fff
+  left: 0
+  width: 100%
+  height: 2px
+  top: 9px
+  transition: all 0.3s ease 0s
+
+.header__burger:before,.header__burger:after
+  content: ''
+  background-color: #fff
+  position: absolute
+  width: 100%
+  height: 2px
+  left: 0
+  transition: all 0.3s ease 0s
+
+.header__burger:before
+  top: 0
+
+.header__burger:after
+  bottom: 0
+
+.header__burger.active span
+  transform: scale(0)
+
+.header__burger.active:before
+  transform: rotate(45deg)
+  top: 9px
+
+.header__burger.active:after
+  transform: rotate(-45deg)
+  bottom: 9px
+
+.header__menu
+  position: fixed
+  top: -100%
+  left: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  transition: all 0.3s ease 0s
+  background-color: #1f77b0
+  padding: 70px 10px 20px 10px
+
+.header__menu.active
+  top: 0
+
+.header__list li
+  margin: 0 0 20px 0
+
+@media ($tablets-screen)
+  .header__body
+    height: 80px
+  .header__logo
+    flex: 0 0 60px
+  .header__burger
+    display: none
+  .header__menu
+    display: contents
+  .header__list
+    display: flex
+    flex-wrap: wrap
+    position: relative
+    z-index: 2
+  .header__list li
+    list-style: none
+    margin: 0 0 0 20px
+
+//-----content-----
+
+.content
+  margin: 0 auto
+  text-align: center
+  max-width: rem-translate(1200px)
+  width: 100%
+  padding: 70px 16px 0 16px
+  .content__title
+   font-size: rem-translate(22px)
+   line-height: rem-translate(28px)
+
+
+@media screen and ($tablets-screen)
+  .content
+   padding: 100px 16px 10px 16px
+
+.content__text
+  margin-top: rem-translate(10px)
+  font-weight: 400
+  font-size: rem-translate(17px)
+
+.content__name
+  margin-top: rem-translate(10px)
+  margin-bottom: 0
+  text-align: left
+  font-weight: 700
+  font-size: rem-translate(17px)
+
+@media screen and ($desktops-screen)
+  .content
+   .content__title
+    font-size: 1.6rem
+  .content__text
+   font-size: 1.4rem
+  .content__name
+   font-size: 1.4rem
+
+//----products-catalog-----
+
+.products-catalog
+  max-width: rem-translate(1200px)
+  margin: 0 auto
+
+.products-list
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+
+.product-item
+  text-align: center
+  width: 100%
+  border: 2px solid #acacac
+  border-radius: 10px
+  padding: 10px 5px 10px 5px
+  margin: 10px
+
+//.product-item img
+//  max-width: 100%
+//
+//.product-item-set img
+// max-width: 100%
+
+@media screen and (min-width: 500px)
+ .product-item
+  width: 46%
+  &:nth-child(2n)
+   margin: 10px 10px 10px 5px
+
+@media screen and ($tablets-screen)
+  .product-item
+   width: 30%
+
+//@media screen and ($tablets-screen)
+//  .header
+//   background-color: #6abc2c
+//
+//body
+// background-color: #6abc2c
+
+@media screen and ($notebooks-screen)
+  .product-item
+   width: 23%
+   margin: 20px 10px 20px 5px
+   &:nth-child(2n)
+    margin: 20px 10px 20px 5px
+
+@media screen and ($desktops-screen)
+  .product-item
+   width: 25%
+   margin: 20px 10px 20px 5px
+   &:nth-child(2n)
+    margin: 20px 10px 20px 5px
+
+.product__title
+  margin-bottom: 16px
+  font-size: rem-translate(21px)
+  color: #8e0000
+
+.product__text
+  line-height: rem-translate(25px)
+
+.product__add-cart
+  margin-top: 35px
+  margin-bottom: 20px
+  color: #06811a
+
+.product__closed-cart
+  color: #444444
+  margin-top: 35px
+
+.product-item-set
+  width: rem-translate(250px)
+
+@media screen and ($desktops-screen)
+ .product__title
+  font-size: 1.8rem
+ .product__add-cart
+  font-size: 1.4rem
+ .product__closed-cart
+  font-size: 1.4rem
+
+//-----slider----
+.slider
+  width: 100%
+  background-color: #6dcff6
+  p
+   color: white
+   text-align: center
+   padding: 17px 0 15px 0
+   text-shadow: 0 3px 4px rgba(0,0,0,0.5)
+
+.main-slider
+  max-width: rem-translate(1200px)
+  width: 100%
+  display: flex
+  justify-content: center
+  padding-bottom: 55px
+
+.ant-carousel
+  margin: auto auto
+  max-width: 320px
+
+.ant-carousel-element
+  width: 320px
+  text-align: center
+
+@media screen and (min-width: 500px)
+ .ant-carousel
+  max-width: 540px
+  .ant-carousel-element
+   width: 540px
+
+@media screen and ($tablets-screen)
+ .ant-carousel
+  max-width: 700px
+  .ant-carousel-element
+   width: 700px
+
+@media screen and ($notebooks-screen)
+ .ant-carousel
+  max-width: 800px
+  .ant-carousel-element
+   width: 800px
+
+@media screen and ($desktops-screen)
+ .ant-carousel
+  max-width: 900px
+  .ant-carousel-element
+   width: 900px
+
+/* General styles */
+.ant-carousel
+  width: auto
+  position: relative
+
+.ant-carousel-hider
+  overflow: hidden
+
+.ant-carousel-list
+  width: auto
+  margin: 0
+  padding: 0
+  list-style-type: none
+  display: flex
+  justify-content: flex-start
+
+.ant-carousel-element
+  display: block
+  flex: 0 0 auto
+  line-height: 0
+
+/* Navigation item styles */
+
+div.ant-carousel-arrow-left,
+div.ant-carousel-arrow-right
+  top: 111%
+  width: 22px
+  height: 40px
+  position: absolute
+  cursor: pointer
+  opacity: 0.6
+  z-index: 32
+  svg path
+   fill: white
+   stroke: white
+   stroke-width: 11px
+
+div.ant-carousel-arrow-left
+  left: 76px
+
+div.ant-carousel-arrow-right
+  right: 76px
+
+@media screen and (min-width: 500px)
+  div.ant-carousel-arrow-left,
+  div.ant-carousel-arrow-right
+   top: 107%
+  div.ant-carousel-arrow-left
+   left: 200px
+  div.ant-carousel-arrow-right
+   right: 200px
+
+@media screen and ($tablets-screen)
+  div.ant-carousel-arrow-left,
+  div.ant-carousel-arrow-right
+   top: 105%
+  div.ant-carousel-arrow-left
+   left: 270px
+  div.ant-carousel-arrow-right
+   right: 270px
+
+@media screen and ($notebooks-screen)
+  div.ant-carousel-arrow-left,
+  div.ant-carousel-arrow-right
+   top: 105%
+  div.ant-carousel-arrow-left
+   left: 325px
+  div.ant-carousel-arrow-right
+   right: 325px
+
+@media screen and ($desktops-screen)
+  div.ant-carousel-arrow-left,
+  div.ant-carousel-arrow-right
+   top: 104%
+  div.ant-carousel-arrow-left
+   left: 372px
+  div.ant-carousel-arrow-right
+   right: 372px
+
+div.ant-carousel-arrow-left:hover
+  opacity: 1.0
+
+div.ant-carousel-arrow-right:hover
+  opacity: 1.0
+
+div.ant-carousel-dots
+  width: 100%
+  height: auto
+  position: absolute
+  left: 0
+  bottom: -40px
+  z-index: 30
+  text-align: center
+
+span.ant-dot
+  width: 15px
+  height: 15px
+  margin: 5px 7px
+  padding: 0
+  display: inline-block
+  background-color: #BBB
+  border-radius: 10px
+  cursor: pointer
+
+.footer__copyright
+  text-align: center
+  font-size: .7rem
+  margin: 10px 0 10px 0
